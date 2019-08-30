@@ -1,0 +1,16 @@
+<%= form_with(model: @task, local: true) do |f| %>
+	<% if @task.errors.any? %>
+		<div class="error_expranation">
+			<h3><%= @task.errors.count %>件のエラーがあります。</h3>
+		</div>
+		<%  @task.errors.full_message.each do |msg| %>
+			<p id="error_message"><%= msg %></p>
+		<% end %>
+	<% end %>
+
+	<p><%= f.label :name %></p>
+	<p><%= f.text_field :name %></p>
+	<p><%= f.label :description %></p>
+	<p><%= f.text_area :description %></p>
+	<p><%= f.submit :description %></p>
+<% end %>
