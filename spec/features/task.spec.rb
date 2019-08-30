@@ -40,7 +40,10 @@ RSpec.feature "タスク管理機能", type: :feature do
 	expect(page).to have_content 'hoge'
   end
 
-  scenario "タスク詳細のテスト" do
-
+	scenario "タスク詳細のテスト" do
+		Task.create!(name: 'test_task_03', description: 'testtesttest',id: '5')
+		visit task_path(5)
+		expect(page).to have_content 'test_task_03'
+		expect(page).to have_content 'testtesttest'
   end
 end
