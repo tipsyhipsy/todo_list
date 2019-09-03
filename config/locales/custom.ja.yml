@@ -1,7 +1,13 @@
 ja:
-  view:
-    sample: さんぷる
-    name: 名前
+  task:
     task: タスク
-    description: 詳細
-    created_at: 作成日
+    attributes:
+      task: タスク
+        name: 名前
+        description: 詳細
+    view:
+      sample: さんぷる
+      name: 名前
+      task: タスク
+      description: 詳細
+      created_at: 作成日
