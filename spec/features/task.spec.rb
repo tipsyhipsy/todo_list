@@ -17,6 +17,7 @@ RSpec.feature "タスク管理機能", type: :feature do
 		visit new_task_path
 		fill_in '名前', with: "task1"
 		fill_in '詳細', with: "hoge"
+		fill_in '期限', with: "2019/08/01"
 		click_on '登録する'
 
 		expect(page).to have_content 'task1'

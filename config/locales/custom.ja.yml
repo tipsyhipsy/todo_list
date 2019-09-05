@@ -5,3 +5,4 @@ ja:
         task: タスク
         name: 名前
         description: 詳細
+        expired_at: 期限
