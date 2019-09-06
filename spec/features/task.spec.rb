@@ -34,4 +34,10 @@ RSpec.feature "タスク管理機能", type: :feature do
 		visit tasks_path
     expect(Task.order("created_at DESC").map(&:id)).to eq [13, 12, 11]
 	end
+
+	scenario "タスクが終了期限で昇順に並び替えできているかテスト" do
+		visit tasks_path
+		click_on '終了期限で並び替え'
+    expect(Task.order("expired_at ASC").map(&:id)).to eq [14, 15, 16]
+	end
 end
