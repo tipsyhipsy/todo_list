@@ -8,11 +8,11 @@
 <% end %>
 
 <%= search_form_for @q, url: tasks_path do |f| %>
-	<%= f.label :name_cont, 'Search Name' %>
+	<%= f.label :name_cont, 'タスク名検索' %>
 	<%= f.search_field :name_cont, placeholder: '検索するテキストを入力...' %>
-	<%= f.radio_button :state_eq, 0 %>未着手
-	<%= f.radio_button :state_eq, 1 %>着手中
-	<%= f.radio_button :state_eq, 2 %>完了
+	<%= f.radio_button :state_eq, 0 %><%= t'.waiting' %>
+	<%= f.radio_button :state_eq, 1 %><%= t'.working' %>
+	<%= f.radio_button :state_eq, 2 %><%= t'.done' %>
 	<%= f.submit 'Search' %><%= link_to 'Clear', tasks_path %>
 <% end %>
 
