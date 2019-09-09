@@ -13,7 +13,7 @@
 	<p><%= f.label :description %></p>
 	<p><%= f.text_area :description %></p>
 	<p><%= f.label :state %></p>
-	<p><%= f.select :state,{未着手:"waiting", 進捗中:"working", 完了:"done"} %></p>
+	<p><%= f.select :state, Task.states.keys %></p>
 	<p><%= f.label :expired_at %></p>
 	<p><%= f.datetime_field :expired_at %></p>
 	<p><%= f.submit %></p>

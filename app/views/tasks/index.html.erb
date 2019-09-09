@@ -7,6 +7,15 @@
 	<%= link_to '終了期限で並び替え', tasks_path(sort_expired:"true") %>
 <% end %>
 
+<%= search_form_for @q, url: tasks_path do |f| %>
+	<%= f.label :name_cont, 'Search Name' %>
+	<%= f.search_field :name_cont, placeholder: '検索するテキストを入力...' %>
+	<%= f.radio_button :state_eq, 0 %>未着手
+	<%= f.radio_button :state_eq, 1 %>着手中
+	<%= f.radio_button :state_eq, 2 %>完了
+	<%= f.submit 'Search' %><%= link_to 'Clear', tasks_path %>
+<% end %>
+
 <table>
 	<thead>
 		<tr>
@@ -17,17 +26,17 @@
 			<th>期限</th>
 		</tr>
 	</thead>
-	<% @tasks.each do |t| %>
+	<% @tasks.each do |f| %>
 		<tbody>
 			<tr>
-				<td><%= t.name %></td>
-				<td><%= t.description %></td>
-				<td><%= t.state %></td>
-				<td><%= t.created_at %></td>
-				<td><%= t.expired_at %></td>
-				<td><%= link_to t('.edit'), edit_task_path(t) %></td>
-				<td><%= link_to t('.show'), t %></td>
-				<td><%= link_to t('.destroy'), t, method: :delete, data: { confrim: '削除しますか？'} %></td>
+				<td><%= f.name %></td>
+				<td><%= f.description %></td>
+				<td><%= f.state %></td>
+				<td><%= f.created_at %></td>
+				<td><%= f.expired_at %></td>
+				<td><%= link_to t('.edit'), edit_task_path(f) %></td>
+				<td><%= link_to t('.show'), f %></td>
+				<td><%= link_to t('.destroy'), f, method: :delete, data: { confrim: '削除しますか？'} %></td>
 			</tr>
 		</tbody>
 	<% end %>
