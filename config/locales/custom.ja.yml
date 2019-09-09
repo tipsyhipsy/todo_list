@@ -18,3 +18,9 @@ ja:
       edit: 編集
       show: 詳細
       destroy: 削除
+  enums:
+    task:
+      state:
+        waiting: 未着手
+        working: 着手
+        done: 完了
