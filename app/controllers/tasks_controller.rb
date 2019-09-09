@@ -3,7 +3,12 @@ class TasksController < ApplicationController
 
 	def index
 		@q = Task.ransack(params[:q])
-		@tasks = @q.result
+		@tasks = @q.result.latest
+		if params[:sort_expired]
+			@tasks = Task.expired
+		else
+			@tasks = Task.default
+		end
 	end
 
 	def show
