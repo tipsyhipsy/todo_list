@@ -5,6 +5,8 @@ RSpec.feature "タスク管理機能", type: :feature do
 		FactoryBot.create(:task)
 		FactoryBot.create(:second_task)
 		FactoryBot.create(:third_task)
+		# FactoryBot.create(:fourth_task)
+		# FactoryBot.create(:fifth_task)
 	end
 
 	scenario "タスク一覧のテスト" do
@@ -39,5 +41,21 @@ RSpec.feature "タスク管理機能", type: :feature do
 		visit tasks_path
 		click_on '終了期限で並び替え'
     expect(Task.order("expired_at ASC").map(&:id)).to eq [14, 15, 16]
+    
+	scenario "タスクの曖昧検索ができているかのテスト" do
+		visit tasks_path
+		fill_in "タスク名検索", with: "1"
+		click_on "Search"
+		expect(page).to have_content 'name01'
+	end
+
+	scenario "タスクのand検索ができているかのテスト" do
+		FactoryBot.create(:fourth_task)
+
+		visit tasks_path
+		fill_in "タスク名検索", with: "name"
+		choose 'q_state_eq_1'
+		click_on 'Search'
+		expect(page).to have_content 'name04'
 	end
 end
