@@ -52,7 +52,7 @@ RSpec.feature "タスク管理機能", type: :feature do
 	scenario "タスクの曖昧検索ができているかのテスト" do
 		visit tasks_path
 		fill_in "タスク名検索", with: "1"
-		click_on "Search"
+		click_on "検索"
 		expect(page).to have_content 'name01'
 	end
 
@@ -62,7 +62,7 @@ RSpec.feature "タスク管理機能", type: :feature do
 		visit tasks_path
 		fill_in "タスク名検索", with: "name"
 		choose 'q_state_eq_1'
-		click_on 'Search'
+		click_on '検索'
 		expect(page).to have_content 'name04'
 	end
 end
