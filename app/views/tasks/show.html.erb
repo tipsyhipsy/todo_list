@@ -1,10 +1,16 @@
 <h1>タスク詳細</h1>
 
 <ul>
-	<li>タスク名：</li>
-	<li><%= @task.name %></li>
-	<li>登録日時：</li>
-	<li><%= @task.created_at %></li>
-	<li>詳細：</li>
-	<li><%= @task.description %></li>
+	<strong>タスク名：</strong>
+	<li class="form-control"><%= @task.name %></li>
+	<strong>優先順位：</strong>
+	<li class="form-control"><%= @task.priority %></li>
+	<strong>進捗：</strong>
+	<li class="form-control"><%= @task.state_i18n %></li>
+	<strong>登録日時：</strong>
+	<li class="form-control"><%= @task.created_at %></li>
+	<strong>期限：</strong>
+	<li class="form-control"><%= @task.priority_i18n %></li>
+	<strong>詳細：</strong>
+	<li class="form-control"><%= @task.description %></li>
 </ul>
