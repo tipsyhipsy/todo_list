@@ -2,7 +2,14 @@ class TasksController < ApplicationController
 	before_action :set_task, only:[:show, :edit, :update, :destroy]
 
 	def index
-		@tasks = Task.all
+		@q = Task.ransack(params[:q])
+		if params[:q]
+			@tasks = @q.result.limit(3)
+		elsif params[:sort_expired]
+			@tasks = Task.expired
+		else
+			@tasks = Task.default
+		end
 	end
 
 	def show
@@ -40,7 +47,7 @@ class TasksController < ApplicationController
 	private
 
 	def task_params
-		params.require(:task).permit(:name, :description)
+		params.require(:task).permit(:name, :description, :expired_at, :state)
 	end
 
 	def set_task

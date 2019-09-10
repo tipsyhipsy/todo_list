@@ -22,4 +22,13 @@ FactoryBot.define do
 		description { 'description03' }
 		created_at {'2019-09-03'}
   end
+
+  # stateを検索するためのテスト用データ
+  factory :fourth_task, class: Task do
+    name { 'name04' }
+		description { 'description04' }
+		created_at {'2019-09-04'}
+    state { 1 }
+  end
+
 end

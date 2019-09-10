@@ -5,6 +5,8 @@ RSpec.feature "タスク管理機能", type: :feature do
 		FactoryBot.create(:task)
 		FactoryBot.create(:second_task)
 		FactoryBot.create(:third_task)
+		# FactoryBot.create(:fourth_task)
+		# FactoryBot.create(:fifth_task)
 	end
 
 	scenario "タスク一覧のテスト" do
@@ -17,6 +19,7 @@ RSpec.feature "タスク管理機能", type: :feature do
 		visit new_task_path
 		fill_in '名前', with: "task1"
 		fill_in '詳細', with: "hoge"
+		fill_in '期限', with: "2019/08/01"
 		click_on '登録する'
 
 		expect(page).to have_content 'task1'
@@ -32,5 +35,22 @@ RSpec.feature "タスク管理機能", type: :feature do
 	scenario "タスクが作成日時の降順に並んでいるかのテスト" do
 		visit tasks_path
     expect(Task.order("created_at DESC").map(&:id)).to eq [13, 12, 11]
+	end
+
+	scenario "タスクの曖昧検索ができているかのテスト" do
+		visit tasks_path
+		fill_in "タスク名検索", with: "1"
+		click_on "Search"
+		expect(page).to have_content 'name01'
+	end
+
+	scenario "タスクのand検索ができているかのテスト" do
+		FactoryBot.create(:fourth_task)
+
+		visit tasks_path
+		fill_in "タスク名検索", with: "name"
+		choose 'q_state_eq_1'
+		click_on 'Search'
+		expect(page).to have_content 'name04'
 	end
 end

@@ -8,6 +8,8 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
+gem 'ransack'
+gem 'enum_help'
 
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
@@ -25,6 +27,9 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem 'selenium-webdriver'
+  gem 'pry-rails'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :development do
