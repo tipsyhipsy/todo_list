@@ -4,4 +4,5 @@ class Task < ApplicationRecord
 	enum priority:{high: 0, medium: 1, low: 2}
 	scope :default, -> { order(created_at: :desc) }
 	scope :expired, -> { order(expired_at: :asc) }
+	scope :priority, -> { order(priority: :asc) }
 end

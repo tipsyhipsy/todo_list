@@ -7,6 +7,8 @@ class TasksController < ApplicationController
 			@tasks = @q.result.limit(3)
 		elsif params[:sort_expired]
 			@tasks = Task.expired
+		elsif params[:sort_priority]
+			@tasks = Task.priority
 		else
 			@tasks = Task.default
 		end
