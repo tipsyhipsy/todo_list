@@ -6,7 +6,8 @@ FactoryBot.define do
   factory :task do
     name { 'name01' }
 		description { 'description01' }
-		created_at {'2019-09-01'}
+    created_at {'2019-09-01'}
+    priority { 2 }
   end
 
   # 作成するテストデータの名前を「second_task」とします
@@ -14,13 +15,15 @@ FactoryBot.define do
   factory :second_task, class: Task do
     name { 'name02' }
 		description { 'description02' }
-		created_at {'2019-09-02'}
+    created_at {'2019-09-02'}
+    priority { 1 }
 	end
 
   factory :third_task, class: Task do
     name { 'name03' }
 		description { 'description03' }
-		created_at {'2019-09-03'}
+    created_at {'2019-09-03'}
+    priority { 0 }
   end
 
   # stateを検索するためのテスト用データ
