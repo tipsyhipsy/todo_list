@@ -1,17 +1,16 @@
 class TasksController < ApplicationController
 	before_action :set_task, only:[:show, :edit, :update, :destroy]
-	PER = 5
 
 	def index
 		@q = Task.ransack(params[:q])
 		if params[:q]
-			@tasks = @q.result.page(params[:page]).per(PER)
+			@tasks = @q.result.limit(3)
 		elsif params[:sort_expired]
-			@tasks = Task.expired.page(params[:page]).per(PER)
+			@tasks = Task.expired
 		elsif params[:sort_priority]
-			@tasks = Task.priority.page(params[:page]).per(PER)
+			@tasks = Task.priority
 		else
-			@tasks = Task.default.page(params[:page]).per(PER)
+			@tasks = Task.default
 		end
 	end
 
