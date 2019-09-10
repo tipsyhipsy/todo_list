@@ -14,6 +14,8 @@
 	<p><%= f.text_area :description %></p>
 	<p><%= f.label :state %></p>
 	<p><%= f.select :state, Task.states.keys .map {|k| [I18n.t("enums.task.state.#{k}"), k]}%></p>
+	<p><%= f.label :priority %></p>
+	<p><%= f.select :priority, Task.priorities.keys .map {|k| [I18n.t("enums.task.priority.#{k}"), k]}%></p>
 	<p><%= f.label :expired_at %></p>
 	<p><%= f.datetime_field :expired_at %></p>
 	<p><%= f.submit %></p>

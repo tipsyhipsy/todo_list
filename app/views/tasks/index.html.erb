@@ -20,6 +20,7 @@
 	<thead>
 		<tr>
 			<th>タスク名</th>
+			<th>優先順位</th>
 			<th>詳細</th>
 			<th>進捗</th>
 			<th>登録日時</th>
@@ -30,6 +31,7 @@
 		<tbody>
 			<tr>
 				<td><%= f.name %></td>
+				<td><%= f.priority_i18n %></td>
 				<td><%= f.description %></td>
 				<td><%= f.state_i18n %></td>
 				<td><%= f.created_at %></td>
