@@ -7,6 +7,8 @@ class TasksController < ApplicationController
 			@tasks = @q.result.limit(3)
 		elsif params[:sort_expired]
 			@tasks = Task.expired
+		elsif params[:sort_priority]
+			@tasks = Task.priority
 		else
 			@tasks = Task.default
 		end
@@ -47,7 +49,7 @@ class TasksController < ApplicationController
 	private
 
 	def task_params
-		params.require(:task).permit(:name, :description, :expired_at, :state)
+		params.require(:task).permit(:name, :description, :expired_at, :state, :priority)
 	end
 
 	def set_task
