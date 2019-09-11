@@ -1,4 +1,4 @@
-<%= form_with(model: @task, local: true) do |f| %>
+<%= simple_form_for(@task, local: true, html: { class: 'form-section'}) do |f| %>
 	<% if @task.errors.any? %>
 		<div class="error_expranation">
 			<h3><%= @task.errors.count %>件のエラーがあります。</h3>
@@ -7,19 +7,14 @@
 			<p id="error_message"><%= msg %></p>
 		<% end %>
 	<% end %>
-<ul>
-	<li><%= f.label :name %></li>
-	<li><%= f.text_field :name, class:"form-control" %></li>
-	<li><%= f.label :description %></li>
-	<li><%= f.text_area :description, class:"form-control" %></li>
-	<li>
+	<div class="form-group">
+		<%= f.input :name %>
+		<%= f.label :description %>
+		<%= f.input_field :description, class:"form-control" %>
 		<%= f.label :state %><%= f.select :state, Task.states.keys .map {|k| [I18n.t("enums.task.state.#{k}"), k]}%>
 		<%= f.label :priority %><%= f.select :priority, Task.priorities.keys .map {|k| [I18n.t("enums.task.priority.#{k}"), k]}%>
-	</li>
-	<li>
 		<%= f.label :expired_at %>
 		<%= f.date_field :expired_at, class:"input-group date" %>
-	</li>
-	<li><%= f.submit '登録する', class:"btn btn-primary btn-block"%></li>
-</ul>
+		<%= f.submit '登録する', class:"btn btn-primary btn-block"%>
+	</div>
 <% end %>
