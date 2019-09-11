@@ -7,16 +7,19 @@
 			<p id="error_message"><%= msg %></p>
 		<% end %>
 	<% end %>
-
-	<p><%= f.label :name %></p>
-	<p><%= f.text_field :name %></p>
-	<p><%= f.label :description %></p>
-	<p><%= f.text_area :description %></p>
-	<p><%= f.label :state %></p>
-	<p><%= f.select :state, Task.states.keys .map {|k| [I18n.t("enums.task.state.#{k}"), k]}%></p>
-	<p><%= f.label :priority %></p>
-	<p><%= f.select :priority, Task.priorities.keys .map {|k| [I18n.t("enums.task.priority.#{k}"), k]}%></p>
-	<p><%= f.label :expired_at %></p>
-	<p><%= f.datetime_field :expired_at %></p>
-	<p><%= f.submit %></p>
+<ul>
+	<li><%= f.label :name %></li>
+	<li><%= f.text_field :name, class:"form-control" %></li>
+	<li><%= f.label :description %></li>
+	<li><%= f.text_area :description, class:"form-control" %></li>
+	<li>
+		<%= f.label :state %><%= f.select :state, Task.states.keys .map {|k| [I18n.t("enums.task.state.#{k}"), k]}%>
+		<%= f.label :priority %><%= f.select :priority, Task.priorities.keys .map {|k| [I18n.t("enums.task.priority.#{k}"), k]}%>
+	</li>
+	<li>
+		<%= f.label :expired_at %>
+		<%= f.date_field :expired_at, class:"input-group date" %>
+	</li>
+	<li><%= f.submit '登録する', class:"btn btn-primary btn-block"%></li>
+</ul>
 <% end %>

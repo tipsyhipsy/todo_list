@@ -1,20 +1,27 @@
 <h1>タスク一覧</h1>
 
 <%= link_to '新規投稿', new_task_path %>
-<%= link_to '終了期限で並び替え', tasks_path(sort_expired:"true") %>
-<%= link_to '優先順位で並び替え', tasks_path(sort_priority:"true") %>
-<%= link_to '検索をクリア', tasks_path %>
-<%= search_form_for @q, url: tasks_path do |f| %>
-	<%= f.label :name_cont, 'タスク名検索' %>
-	<%= f.search_field :name_cont, placeholder: '検索するテキストを入力...' %>
-	<%= f.radio_button :state_eq, 0 %><%= t'.waiting' %>
-	<%= f.radio_button :state_eq, 1 %><%= t'.working' %>
-	<%= f.radio_button :state_eq, 2 %><%= t'.done' %>
-	<%= f.submit 'Search' %>
+<%= search_form_for @q, url: tasks_path, mathod: :get do |f| %>
+	<ul class="padding-none">
+		<li><%= f.label :name_cont, 'タスク名検索' %></li>
+		<li><%= f.search_field :name_cont, placeholder: '検索するテキストを入力...' ,class:"form-control" %></li>
+		<li>
+			<%= f.label :search_option, '検索オプション：' %>
+			<%= f.radio_button :state_eq, 0 %><%= t'.waiting' %>
+			<%= f.radio_button :state_eq, 1 %><%= t'.working' %>
+			<%= f.radio_button :state_eq, 2 %><%= t'.done' %>
+			<%= f.submit '検索', class:"btn btn-primary float-left" %>
+		</li>
+	</ul>
 <% end %>
-
-<table>
-	<thead>
+<span class="float-left">
+	<%= button_to 'クリア', {controller: 'tasks', action:'index'},{method: :get, class: "btn btn-default"} %>
+</span>
+<strong>並び替えメニュー：</strong>
+<%= link_to '終了期限で並び替え', tasks_path(sort_expired:"true") %>&#047;
+<%= link_to '優先順位で並び替え', tasks_path(sort_priority:"true") %>
+<table class="table">
+	<thead class="text-center">
 		<tr>
 			<th>優先順位</th>
 			<th>タスク名</th>
