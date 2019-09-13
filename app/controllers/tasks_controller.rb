@@ -23,7 +23,7 @@ class TasksController < ApplicationController
 	end
 
 	def create
-		@task = Task.new(task_params)
+		@task = Task,new(task_params)
 		if @task.save
 			redirect_to tasks_path, notice: "作成しました。"
 		else
@@ -56,4 +56,5 @@ class TasksController < ApplicationController
 	def set_task
 		@task = Task.find(params[:id])
 	end
+
 end
