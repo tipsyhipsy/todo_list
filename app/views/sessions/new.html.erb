@@ -1,0 +1,10 @@
+<h1>ログイン</h1>
+
+<%= simple_form_for(:session, url: sessions_path, html: {class: 'form-section'}) do |f| %>
+	<%= f.error_notification %>
+	<div class="form-group">
+		<%= f.input :email, label:'email' %>
+		<%= f.input :password, label: 'password' %>
+		<%= f.submit 'login', class:'btn btn-primary btn-block' %>
+	</div>
+<% end %>
