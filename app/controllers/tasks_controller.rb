@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
-	before_action :set_task, only:[:show, :edit, :update, :destroy]
+	before_action :set_task, only: %i[show edit update destroy]
+	before_action :require_log_in!, only: %i[index new edit update destroy]
 	PER = 5
 
 	def index
@@ -23,11 +24,11 @@ class TasksController < ApplicationController
 	end
 
 	def create
-		@task = Task,new(task_params)
+		@task = current_user.tasks.build(task_params)
 		if @task.save
 			redirect_to tasks_path, notice: "作成しました。"
 		else
-			render :new, denger: "作成に失敗しました。"
+			render :new, danger: "作成に失敗しました。"
 		end
 	end
 
@@ -55,6 +56,13 @@ class TasksController < ApplicationController
 
 	def set_task
 		@task = Task.find(params[:id])
+	end
+
+	def require_log_in!
+		unless logged_in?
+			flash[:alert] = "ログインしてください。"
+			redirect_to new_session_path
+		end
 	end
 
 end
