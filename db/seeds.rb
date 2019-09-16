@@ -8,5 +8,5 @@
 User.create!(
   name: 'Adam',
   email: 'adam@adam.com',
-  password_digest: 'password',
+  password: 'password',
   )
