@@ -4,15 +4,15 @@ class TasksController < ApplicationController
 	PER = 5
 
 	def index
-		@q = Task.ransack(params[:q])
+		@q = search_tasks.ransack(params[:q])
 		if params[:q]
 			@tasks = @q.result.page(params[:page]).per(PER)
 		elsif params[:sort_expired]
-			@tasks = Task.expired.page(params[:page]).per(PER)
+			@tasks = search_tasks.expired.page(params[:page]).per(PER)
 		elsif params[:sort_priority]
-			@tasks = Task.priority.page(params[:page]).per(PER)
+			@tasks = search_tasks.priority.page(params[:page]).per(PER)
 		else
-			@tasks = Task.default.page(params[:page]).per(PER)
+			@tasks = search_tasks.default.page(params[:page]).per(PER)
 		end
 	end
 
@@ -58,11 +58,7 @@ class TasksController < ApplicationController
 		@task = Task.find(params[:id])
 	end
 
-	def require_log_in!
-		unless logged_in?
-			flash[:alert] = "ログインしてください。"
-			redirect_to new_session_path
-		end
+	def search_tasks
+	 @search = Task.where(user_id: current_user.id)
 	end
-
 end

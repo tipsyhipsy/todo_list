@@ -1,7 +1,13 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[edit update show]
+  before_action :ensure_correct_user, only: %i[show edit update]
+
   def new
-    @user = User.new
+    if logged_in?
+      redirect_to tasks_path
+    else
+      @user = User.new
+    end
   end
 
   def create
@@ -32,5 +38,12 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confrimation, :admin)
+  end
+
+  def ensure_correct_user
+    if current_user.id !=  @user.id
+      flash[:notice] ="権限がありません。"
+      redirect_to tasks_path
+    end
   end
 end
