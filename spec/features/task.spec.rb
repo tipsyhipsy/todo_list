@@ -6,7 +6,7 @@ RSpec.feature "タスク管理機能", type: :feature do
 	before do
 		FactoryBot.create(:task, user: FactoryBot.create(:user))
 
-		visit new_session_path
+		visit login_path
 
 		fill_in 'メールアドレス', with:'foo@foo.com'
 		fill_in 'パスワード', with:'password'
@@ -14,7 +14,7 @@ RSpec.feature "タスク管理機能", type: :feature do
 	end
 
 	scenario "タスク一覧のテスト" do
-		visit tasks_path
+		visit root_path
 
 		expect(page).to have_content 'name01'
 		expect(page).to have_content 'description01'

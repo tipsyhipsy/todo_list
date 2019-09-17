@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def new
     if logged_in?
-      redirect_to tasks_path
+      redirect_to root_path
     else
       @user = User.new
     end
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     if @user.save
       log_in @user
       flash[:success] = "ログインしました。"
-      redirect_to tasks_path
+      redirect_to root_path
     else
       render :new
     end
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
   def ensure_correct_user
     if current_user.id !=  @user.id
       flash[:notice] ="権限がありません。"
-      redirect_to tasks_path
+      redirect_to root_path
     end
   end
 end

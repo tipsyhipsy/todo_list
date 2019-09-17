@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 	def require_log_in!
 		unless logged_in?
 			flash[:alert] = "ログインしてください。"
-			redirect_to new_session_path
+			redirect_to login_path
 		end
 	end
 end
