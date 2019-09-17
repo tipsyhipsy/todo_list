@@ -1,6 +1,6 @@
 <%= current_user.name %>
-<%= link_to 'logout', session_path(current_user.id), method: :delete %>
-<%= link_to 'mypage', user_path(current_user.id) %>
+<%= link_to t('.logout'), session_path(current_user.id), method: :delete %>
+<%= link_to t('.mypage'), user_path(current_user.id) %>
 
 
 <br>

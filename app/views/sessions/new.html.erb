@@ -2,9 +2,9 @@
 
 <%= simple_form_for(:session, url: sessions_path) do |f| %>
 	<div class="form-group">
-		<%= f.input :email, label:'email' %>
-		<%= f.input :password, label: 'password' %>
-		<%= f.submit 'login', class:'btn btn-primary btn-block' %>
+		<%= f.input :email, label:'メールアドレス' %>
+		<%= f.input :password, label: 'パスワード' %>
+		<%= f.submit t('.login'), class:'btn btn-primary btn-block' %>
 	</div>
 <% end %>
 

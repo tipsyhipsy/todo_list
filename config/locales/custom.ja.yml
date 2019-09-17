@@ -14,7 +14,14 @@ ja:
         high: 高
         medium: 中
         low: 低
-
+      user:
+        name: 名前
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード確認
+      session:
+        login: ログイン
+        logout: ログアウト
   tasks:
     index:
       waiting: 未着手
@@ -23,6 +30,12 @@ ja:
       edit: 編集
       show: 詳細
       destroy: 削除
+      logout: ログアウト
+      mypage: マイページ
+  sessions:
+    new:
+      login: ログイン
+      logout: ログアウト
   enums:
     task:
       state:
