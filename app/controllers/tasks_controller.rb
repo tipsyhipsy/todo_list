@@ -1,17 +1,18 @@
 class TasksController < ApplicationController
-	before_action :set_task, only:[:show, :edit, :update, :destroy]
+	before_action :set_task, only: %i[show edit update destroy]
+	before_action :require_log_in!, only: %i[index new edit update destroy]
 	PER = 5
 
 	def index
-		@q = Task.ransack(params[:q])
+		@q = search_tasks.ransack(params[:q])
 		if params[:q]
 			@tasks = @q.result.page(params[:page]).per(PER)
 		elsif params[:sort_expired]
-			@tasks = Task.expired.page(params[:page]).per(PER)
+			@tasks = search_tasks.expired.page(params[:page]).per(PER)
 		elsif params[:sort_priority]
-			@tasks = Task.priority.page(params[:page]).per(PER)
+			@tasks = search_tasks.priority.page(params[:page]).per(PER)
 		else
-			@tasks = Task.default.page(params[:page]).per(PER)
+			@tasks = search_tasks.default.page(params[:page]).per(PER)
 		end
 	end
 
@@ -23,11 +24,11 @@ class TasksController < ApplicationController
 	end
 
 	def create
-		@task = Task.new(task_params)
+		@task = current_user.tasks.build(task_params)
 		if @task.save
 			redirect_to tasks_path, notice: "作成しました。"
 		else
-			render :new, denger: "作成に失敗しました。"
+			render :new, danger: "作成に失敗しました。"
 		end
 	end
 
@@ -55,5 +56,9 @@ class TasksController < ApplicationController
 
 	def set_task
 		@task = Task.find(params[:id])
+	end
+
+	def search_tasks
+	 @search = Task.where(user_id: current_user.id)
 	end
 end

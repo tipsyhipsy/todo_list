@@ -1,5 +1,10 @@
-<h1>タスク一覧</h1>
+<%= current_user.name %>
+<%= link_to t('.logout'), session_path(current_user.id), method: :delete %>
+<%= link_to t('.mypage'), user_path(current_user.id) %>
 
+
+<br>
+<h1>タスク一覧</h1>
 <%= link_to '新規投稿', new_task_path %>
 <%= search_form_for @q, url: tasks_path, mathod: :get do |f| %>
 	<ul class="padding-none">

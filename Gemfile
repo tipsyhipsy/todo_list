@@ -10,8 +10,11 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'ransack'
 gem 'enum_help'
+gem 'bcrypt'
 
 gem 'kaminari', '~> 0.17.0'
+gem 'simple_form'
+
 
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
@@ -45,6 +48,7 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'webdrivers'
   gem 'factory_bot_rails'
+  gem 'database_cleaner'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
