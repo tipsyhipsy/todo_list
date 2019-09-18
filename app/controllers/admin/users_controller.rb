@@ -11,7 +11,7 @@ class Admin::UsersController < ApplicationController
 	end
 
 	def create
-		@user = User(user_params)
+		@user = User.new(user_params)
 		if @user.save
 			redirect_to admin_users_path, notice:"作成しました。"
 		else

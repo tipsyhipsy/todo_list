@@ -7,6 +7,7 @@ class UsersController < ApplicationController
       redirect_to root_path
     else
       @user = User.new
+      render layout: 'logout'
     end
   end
 
@@ -17,7 +18,7 @@ class UsersController < ApplicationController
       redirect_to root_path, success: "ログインしました。"
     else
       flash[:danger] = "登録に失敗しました。"
-      render :new
+      render :new, layout: 'logout'
     end
   end
 
@@ -25,6 +26,11 @@ class UsersController < ApplicationController
   end
 
   def update
+    if @user.update(user_params)
+			redirect_to admin_users_path(@user)
+		else
+			render :edit, alert:"更新に失敗しました。"
+		end
   end
 
   def show
