@@ -1,0 +1,17 @@
+<%= simple_form_for(@user, local: true, html: { class: 'form-section'}) do |f| %>
+	<% if @user.errors.any? %>
+		<div class="error_expranation">
+			<h3><%= @user.errors.count %>件のエラーがあります。</h3>
+		</div>
+		<% @user.errors.full_messages.each do |msg| %>
+			<p id="error_message"><%= msg %></p>
+		<% end %>
+	<% end %>
+	<div class="form-group">
+		<%= f.input :name %>
+		<%= f.input :email %>
+		<%= f.input :password %>
+		<%= f.input :password_confirmation %>
+		<%= f.submit '登録する', class:"btn btn-primary btn-block"%>
+	</div>
+<% end %>

@@ -59,6 +59,6 @@ class TasksController < ApplicationController
 	end
 
 	def search_tasks
-	 @search = Task.where(user_id: current_user.id)
+		@search = Task.where(user_id: current_user.id)
 	end
 end
