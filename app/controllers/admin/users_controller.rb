@@ -1,5 +1,5 @@
 class Admin::UsersController < ApplicationController
-	# before_action :admin_user
+	before_action :admin_user
 	before_action :set_user, only: %i(show edit update destroy)
 
 	def index
@@ -36,18 +36,19 @@ class Admin::UsersController < ApplicationController
 
 	def destroy
 		if @user.destroy
-			redirect_to admin_users_path, notice: "削除しました。"
+			redirect_to admin_users_path(@user), notice: "削除しました。"
 		else
-			flash[:alert] = "削除に失敗しました。"
-			render :index
+			redirect_to admin_users_path(@user), notice: "削除できません。"
 		end
 	end
 
 	private
 
-	# def admin_user
-	# 	redirect_to(root_path) unless current_user.admin?
-	# end
+	def admin_user
+		unless current_user.admin
+			redirect_to root_path, alert: "権限がありません。"
+		end
+	end
 
 	def user_params
 		params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)

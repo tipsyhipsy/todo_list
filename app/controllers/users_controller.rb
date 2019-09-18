@@ -48,7 +48,7 @@ class UsersController < ApplicationController
 
   def ensure_correct_user
     if current_user.id !=  @user.id
-      redirect_to root_path, notice: "権限がありません。"
+      redirect_to root_path, alert: "権限がありません。"
     end
   end
 end
