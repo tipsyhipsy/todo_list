@@ -39,7 +39,7 @@ class TasksController < ApplicationController
 		if @task.update(task_params)
 			redirect_to root_path, notice: "更新しました。"
 		else
-			render :edit, denger: "更新に失敗しました。"
+			render :edit, alert: "更新に失敗しました。"
 		end
 	end
 

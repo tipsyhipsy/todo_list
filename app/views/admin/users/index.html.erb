@@ -9,8 +9,8 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr>
 		<% @users.each do |u| %>
+		<tr>
 			<td><%= u.id %></td>
 			<td><%= u.name %></td>
 			<td><%= u.created_at %></td>
@@ -18,8 +18,8 @@
 			<td><%= u.admin %></td>
 			<td><%= link_to t('.edit'), edit_admin_user_path(u) %></td>
 			<td><%= link_to t('.show'), admin_user_path(u) %></td>
-			<td><%= link_to t('.destroy'), u, method: :delete, data: { confrim: '削除しますか？'} %></td>
-		<% end %>
+			<td><%= link_to t('.destroy'), admin_user_path(u), method: :delete, data: { confirm: '削除しますか？'} %></td>
 		</tr>
+		<% end %>
 	</tbody>
 </table>
