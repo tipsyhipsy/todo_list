@@ -4,9 +4,10 @@ class UsersController < ApplicationController
 
   def new
     if logged_in?
-      redirect_to tasks_path
+      redirect_to root_path
     else
       @user = User.new
+      render layout: 'logout'
     end
   end
 
@@ -14,10 +15,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       log_in @user
-      flash[:success] = "ログインしました。"
-      redirect_to tasks_path
+      redirect_to root_path, success: "ログインしました。"
     else
-      render :new
+      flash[:danger] = "登録に失敗しました。"
+      render :new, layout: 'logout'
     end
   end
 
@@ -25,6 +26,11 @@ class UsersController < ApplicationController
   end
 
   def update
+    if @user.update(user_params)
+			redirect_to admin_users_path(@user)
+		else
+			render :edit, alert:"更新に失敗しました。"
+		end
   end
 
   def show
@@ -37,13 +43,12 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confrimation, :admin)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 
   def ensure_correct_user
     if current_user.id !=  @user.id
-      flash[:notice] ="権限がありません。"
-      redirect_to tasks_path
+      redirect_to root_path, notice: "権限がありません。"
     end
   end
 end

@@ -1,12 +1,12 @@
 <%= current_user.name %>
-<%= link_to t('.logout'), session_path(current_user.id), method: :delete %>
+<%= link_to t('.logout'), logout_path(current_user.id), method: :delete %>
 <%= link_to t('.mypage'), user_path(current_user.id) %>
 
 
 <br>
 <h1>タスク一覧</h1>
 <%= link_to '新規投稿', new_task_path %>
-<%= search_form_for @q, url: tasks_path, mathod: :get do |f| %>
+<%= search_form_for @q, url: root_path, mathod: :get do |f| %>
 	<ul class="padding-none">
 		<li><%= f.label :name_cont, 'タスク名検索' %></li>
 		<li><%= f.search_field :name_cont, placeholder: '検索するテキストを入力...' ,class:"form-control" %></li>
@@ -23,8 +23,8 @@
 	<%= button_to 'クリア', {controller: 'tasks', action:'index'},{method: :get, class: "btn btn-default"} %>
 </span>
 <strong>並び替えメニュー：</strong>
-<%= link_to '終了期限で並び替え', tasks_path(sort_expired:"true") %>&#047;
-<%= link_to '優先順位で並び替え', tasks_path(sort_priority:"true") %>
+<%= link_to '終了期限で並び替え', root_path(sort_expired:"true") %>&#047;
+<%= link_to '優先順位で並び替え', root_path(sort_priority:"true") %>
 <table class="table">
 	<thead class="text-center">
 		<tr>
@@ -47,7 +47,7 @@
 				<td><%= f.expired_at %></td>
 				<td><%= link_to t('.edit'), edit_task_path(f) %></td>
 				<td><%= link_to t('.show'), f %></td>
-				<td><%= link_to t('.destroy'), f, method: :delete, data: { confrim: '削除しますか？'} %></td>
+				<td><%= link_to t('.destroy'), f, method: :delete, data: { confirm: '削除しますか？'} %></td>
 			</tr>
 		</tbody>
 	<% end %>

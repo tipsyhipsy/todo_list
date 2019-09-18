@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+	layout 'logout'
 	def new
 	end
 
@@ -6,18 +7,16 @@ class SessionsController < ApplicationController
 		user = User.find_by(email: params[:session][:email].downcase)
 		if user && user.authenticate(params[:session][:password])
 			log_in user
-			flash[:success] = "ログインしました。"
-			redirect_to tasks_path(user.id)
+			redirect_to root_path(user.id), notice:"ログインしました。"
 		else
-			flash.now[:danger] = "ログインに失敗しました。"
+			flash[:danger] = "ログインに失敗しました。"
 			render :new
 		end
 	end
 
 	def destroy
 		session.delete(:user_id)
-		flash[:notice] = "ログアウトしました。"
-		redirect_to new_session_path
+		redirect_to login_path, notice: "ログアウトしました。"
 	end
 end
 

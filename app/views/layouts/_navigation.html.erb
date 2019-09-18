@@ -1,4 +1,3 @@
-<% if logged_in? %>
 	<%= link_to 'back', :back %>
-<% else %>
-<% end %>
+	<%= link_to 'admin', admin_users_path(@user) %>
+	<%= link_to 'normal', tasks_path(@user) %>

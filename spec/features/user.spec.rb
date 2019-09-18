@@ -18,7 +18,7 @@ RSpec.feature "ユーザー機能", type: :feature do
   end
 
 	scenario "ログインのテスト" do
-		visit new_session_path
+		visit login_path
 
 		fill_in 'メールアドレス', with:'foo@foo.com'
 		fill_in 'パスワード', with:'password'
@@ -29,7 +29,7 @@ RSpec.feature "ユーザー機能", type: :feature do
 
 	describe "ログイン中のテスト" do
 		before do
-			visit new_session_path
+			visit login_path
 
 			fill_in 'メールアドレス', with:'foo@foo.com'
 			fill_in 'パスワード', with:'password'

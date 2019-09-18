@@ -1,13 +1,13 @@
 <h1>新規登録</h1>
-<%= simple_form_for(@user, html: { class: 'form-section'}) do |f|%>
+<%= simple_form_for(@user, url: admin_users_path, html: { class: 'form-section'}) do |f|%>
 	<%= f.error_notification %>
 	<div class="form-group">
 		<%= f.input :name %>
 		<%= f.input :email %>
 		<%= f.input :password %>
 		<%= f.input :password_confirmation %>
+		<%= f.label :admin %>
+		<%= f.select :admin, [['true','true'],['false','false']], selected: 'false' %>
 		<%= f.button :submit, class:"btn btn-primary btn-block" %>
 	</div>
 <% end %>
-
-<%= link_to t('.login'), login_path %>

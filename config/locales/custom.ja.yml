@@ -22,6 +22,16 @@ ja:
       session:
         login: ログイン
         logout: ログアウト
+  enums:
+    task:
+      state:
+        waiting: 未着手
+        working: 着手
+        done: 完了
+      priority:
+        high: 高
+        medium: 中
+        low: 低
   tasks:
     index:
       waiting: 未着手
@@ -36,13 +46,9 @@ ja:
     new:
       login: ログイン
       logout: ログアウト
-  enums:
-    task:
-      state:
-        waiting: 未着手
-        working: 着手
-        done: 完了
-      priority:
-        high: 高
-        medium: 中
-        low: 低
+  admin:
+    users:
+      index:
+        edit: 編集
+        show: 詳細
+        destroy: 削除
