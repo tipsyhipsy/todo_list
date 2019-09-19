@@ -25,6 +25,7 @@ class TasksController < ApplicationController
 
 	def create
 		@task = current_user.tasks.build(task_params)
+		@label = Task.labels.build(task_params)
 		if @task.save
 			redirect_to root_path, notice: "作成しました。"
 		else
@@ -51,7 +52,7 @@ class TasksController < ApplicationController
 	private
 
 	def task_params
-		params.require(:task).permit(:name, :description, :expired_at, :state, :priority)
+		params.require(:task).permit(:name, :description, :expired_at, :state, :priority, { label_ids: []})
 	end
 
 	def set_task

@@ -6,8 +6,10 @@ Rails.application.routes.draw do
 
 	resources :tasks
 	resources :users, except: %i[index]
+	resources :labellings, only: %i[create destroy]
 
 	namespace :admin do
 		resources :users
+		resources :labels
 	end
 end

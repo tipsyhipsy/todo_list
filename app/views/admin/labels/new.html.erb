@@ -1,0 +1,14 @@
+<%= simple_form_for(@label, url: admin_labels_path, local: true, html: { class: 'form-section'}) do |f| %>
+	<% if @label.errors.any? %>
+		<div class="error_expranation">
+			<h3><%= @label.errors.count %>件のエラーがあります。</h3>
+		</div>
+		<% @label.errors.full_messages.each do |msg| %>
+			<p id="error_message"><%= msg %></p>
+		<% end %>
+	<% end %>
+	<div class="form-group">
+		<%= f.input :name %>
+		<%= f.submit '登録する', class:"btn btn-primary btn-block"%>
+	</div>
+<% end %>

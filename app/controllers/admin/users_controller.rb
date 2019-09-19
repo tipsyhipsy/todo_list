@@ -4,6 +4,7 @@ class Admin::UsersController < ApplicationController
 
 	def index
 		@users = User.select %i(id name email admin created_at)
+		@labels = Label.select %i(id name)
 	end
 
 	def new
