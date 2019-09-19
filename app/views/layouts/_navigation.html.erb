@@ -1,8 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="collapse navbar-collapse float-right">
     <ul class="navbar-nav">
-			<li class="font-lg"><%= "ログイン中：#{current_user.name}さん" %>&#047;</li>
-			<li class="font-lg"><%= link_to '新規投稿', new_task_path %>&#047;</li>
+			<li><%= "ログイン中：#{current_user.name}さん" %></li>
 			<li class="nav-item dropdown">
 				<button class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<i class="fas fa-bars font-lg"></i>
