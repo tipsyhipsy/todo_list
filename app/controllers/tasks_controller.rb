@@ -4,7 +4,7 @@ class TasksController < ApplicationController
 	PER = 5
 
 	def index
-		@q = search_tasks.ransack(params[:q])
+		@q = Task.ransack(params[:q])
 		if params[:q]
 			@tasks = @q.result.page(params[:page]).per(PER)
 		elsif params[:sort_expired]
@@ -22,10 +22,9 @@ class TasksController < ApplicationController
 	def new
 		@task = Task.new
 	end
-
+	
 	def create
 		@task = current_user.tasks.build(task_params)
-		@label = Task.labels.build(task_params)
 		if @task.save
 			redirect_to root_path, notice: "作成しました。"
 		else
@@ -52,7 +51,18 @@ class TasksController < ApplicationController
 	private
 
 	def task_params
-		params.require(:task).permit(:name, :description, :expired_at, :state, :priority, { label_ids: []})
+		params.require(:task).permit(
+			:name,
+			:description,
+			:expired_at,
+			:state,
+			:priority,
+			{ label_ids: []},
+				labels_attributes:[
+					:id,
+					:name,
+				]
+			)
 	end
 
 	def set_task

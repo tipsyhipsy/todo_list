@@ -16,7 +16,8 @@
 </div>
 
 <div class="form-group">
-	<% task.labels.each do |l| %>
-		<%= label.name %>
+	<strong>ラベル：</strong>
+	<% @task.labels.each do |l| %>
+		<span class="label label-default"><%= l.name %></span>
 	<% end %>
 </div>
