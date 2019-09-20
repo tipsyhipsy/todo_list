@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.feature "ユーザー機能", type: :feature do
 	include SessionsHelper
-	let!(:user_first) { FactoryBot.create(:user_first)}
-	let!(:user_second) { FactoryBot.create(:user_second)}
+	let!(:user) { FactoryBot.create(:user)}
+	let!(:user_other) { FactoryBot.create(:user_other)}
 
 	scenario "登録のテスト" do
 		visit new_user_path

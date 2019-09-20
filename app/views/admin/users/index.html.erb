@@ -1,4 +1,5 @@
 <%= link_to 'アカウント追加', new_admin_user_path %>
+<%= link_to 'ラベル追加', new_admin_label_path %>
 <table class="table">
 	<thead class="text-center">
 		<tr>
@@ -24,3 +25,21 @@
 		<% end %>
 	</tbody>
 </table>
+
+<table class="table">
+	<thead class="text-center">
+		<tr>
+			<th>ラベル名</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @labels.each do |u| %>
+		<tr>
+			<td><%= u.name %></td>
+			<td><%= link_to t('.edit'), edit_admin_label_path(u) %></td>
+			<td><%= link_to t('.destroy'), admin_label_path(u), method: :delete, data: { confirm: '削除しますか？'} %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+

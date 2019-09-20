@@ -15,6 +15,7 @@
 		<%= f.label :priority %><%= f.select :priority, Task.priorities.keys .map {|k| [I18n.t("enums.task.priority.#{k}"), k]}%>
 		<%= f.label :expired_at %>
 		<%= f.date_field :expired_at, class:"input-group date" %>
+		<%= f.collection_check_boxes(:label_ids, Label.all, :id, :name, include_fidden: false) %>
 		<%= f.submit '登録する', class:"btn btn-primary btn-block"%>
 	</div>
 <% end %>

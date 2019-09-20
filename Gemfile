@@ -11,6 +11,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'ransack'
 gem 'enum_help'
 gem 'bcrypt'
+gem 'jquery-rails'
 
 gem 'kaminari', '~> 0.17.0'
 gem 'simple_form'
@@ -23,7 +24,6 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'byebug'
   gem 'rspec-rails'
   gem 'spring-commands-rspec'
@@ -47,8 +47,6 @@ end
 group :test do
   gem 'capybara', '>= 2.15'
   gem 'webdrivers'
-  gem 'factory_bot_rails'
-  gem 'database_cleaner'
 end
 
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data'
