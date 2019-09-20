@@ -4,7 +4,7 @@ class TasksController < ApplicationController
 	PER = 5
 
 	def index
-		@q = Task.ransack(params[:q])
+		@q = search_tasks.ransack(params[:q])
 		if params[:q]
 			@tasks = @q.result.page(params[:page]).per(PER)
 		elsif params[:sort_expired]

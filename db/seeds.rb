@@ -20,3 +20,17 @@ User.create!(
     }
   ]
 )
+
+Label.create!(
+  [
+    {
+      name: '仕事'
+    },
+    {
+      name: 'プライベート'
+    },
+    {
+      name: '趣味'
+    }
+  ]
+)
