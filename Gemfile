@@ -11,6 +11,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'ransack'
 gem 'enum_help'
 gem 'bcrypt'
+gem 'jquery-rails'
 
 gem 'kaminari', '~> 0.17.0'
 gem 'simple_form'
@@ -47,3 +48,5 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'webdrivers'
 end
+
+gem 'tzinfo-data'
