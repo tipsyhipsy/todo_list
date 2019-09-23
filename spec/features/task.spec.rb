@@ -140,7 +140,7 @@ RSpec.feature "タスク管理機能", type: :feature do
 		check 'test2'
 		click_on '登録する' #検索対象のlabel id(2)を登録
 
-		check 'test2'
+		select 'test2'
 		click_on '検索'
 
 		expect(page).to_not have_content 'name01'#タスクは合計2つ。そのうち、検索対象外が表示されていないか

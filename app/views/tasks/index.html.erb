@@ -14,17 +14,17 @@
 		</li>
 		<li>
 			<strong>ラベル選択：</strong>
-			<%= f.collection_check_boxes(:labels_id_in, Label.all, :id, :name) %>
-			<%= f.submit '検索', class:"btn btn-primary float-left" %>
+			<%= f.collection_select(:labels_id_eq, @labels, :id, :name, include_blank: true, selected:'') %>
+			<%= f.submit '検索', class:"btn btn-primary float-left padding-none" %>
 		</li>
 	<% end %>
 </ul>
 <span class="float-left">
-	<%= button_to 'クリア', {controller: 'tasks', action:'index'},{method: :get, class: "btn btn-default"} %>
+	<%= link_to 'クリア', {controller: 'tasks', action:'index'},{method: :get, class: "float-left"} %>
 </span>
 <strong>並び替えメニュー：</strong>
-<%= link_to '終了期限で並び替え', root_path(sort_expired:"true") %>&#047;
-<%= link_to '優先順位で並び替え', root_path(sort_priority:"true") %>
+  <%= link_to '終了期限で並び替え', root_path(sort_expired:"true") %>&#047;
+  <%= link_to '優先順位で並び替え', root_path(sort_priority:"true") %>
 <table class="table">
 	<thead class="text-center">
 		<tr>
