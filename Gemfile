@@ -13,7 +13,7 @@ gem 'enum_help'
 gem 'bcrypt'
 gem 'jquery-rails'
 
-gem 'kaminari', '~> 0.17.0'
+gem 'kaminari', '~> 1.2.1'
 gem 'simple_form'
 
 
